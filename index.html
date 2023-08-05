@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--====================== 1) DOM manipulation ======================-->
+
+    <h1>DOM Manipulation</h1>
+    <br />
+
+    <div id="element">This a message !!!</div>
+    <br />
+
+    <br />
+    <br />
+
+    <button onclick="changeContent()">Click Me</button>
+
+    <script>
+      let divElement = document.getElementById("element");
+      // create click handeler
+
+      function changeContent() {
+        divElement.innerHTML = "This massage is changed !!!";
+      }
+    </script>
+
+    <!--====================== 2) Click Counter  ======================-->
+
+    <h1>Click Counter</h1>
+    <p id="count">0</p>
+    <button onclick="incrementHandler()">Increment</button>
+
+    <script>
+      let count = document.getElementById("count");
+      let numberValue = parseInt(count.innerText);
+
+      // count handler
+      function incrementHandler() {
+        numberValue++;
+        count.innerText = numberValue;
+      }
+    </script>
+
+    <!--====================== 3)Image Switcher  ======================-->
+
+    <h1>Image Switcher</h1>
+
+    <img
+      id="imageElement"
+      src="fahad-2.jpg"
+      alt="Image 1"
+      style="width: 100px"
+    />
+    <br />
+    <button id="btnImage1">Switch to Image 1</button>
+    <button id="btnImage2">Switch to Image 2</button>
+
+    <script>
+      // JavaScript to handle the button click events
+      document
+        .getElementById("btnImage1")
+        .addEventListener("click", function () {
+          document.getElementById("imageElement").src = "logo.png";
+        });
+
+      document
+        .getElementById("btnImage2")
+        .addEventListener("click", function () {
+          document.getElementById("imageElement").src = "fahad-2.jpg";
+        });
+    </script>
+
+    <!--====================== 4) Ajax ======================-->
+    <h2>Ajax</h2>
+    <p id="user">User List</p>
+    <ul id="userList"></ul>
+    <script>
+      let userList = document.getElementById("userList");
+      let URL = "https://jsonplaceholder.typicode.com/posts";
+
+      function userData(data) {
+        return data;
+      }
+
+      fetch(URL)
+        .then((res) => res.json())
+        .then((data) => {
+          let Users = userData(data);
+          console.log(Users);
+
+          Users.map((user) => {
+            userList.innerHTML += `<li>ID: ${user.id}, Title: ${user.title}</li>`;
+          });
+        });
+    </script>
+  </body>
+</html>
